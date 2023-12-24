@@ -1,4 +1,21 @@
-from day_1.day1_Part1 import Sum_calibration
+def calibration_value(line):
+    for i in line:
+        if i.isdigit():
+            first = int(i)
+            break
+
+    for i in reversed(line):
+        if i.isdigit():
+            last = int(i)
+            break
+
+    return first*10+last
+
+def Sum_calibration(Input):
+    sum=0
+    for line in Input:
+        sum += calibration_value(line)
+    return sum
 
 def Add_nums(line):
     nums = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
@@ -37,20 +54,12 @@ def modify_Input(Input):
     return Input
 
 def main():
-    Input = []
-    while True:
-        ele = input()
-        if ele == '':
-            break
-        else:
-            Input.append(ele)
+    # read input
+    Input = open('day_1\day1_Input.txt').read().split('\n')
+    print("Part 1: ",Sum_calibration(Input))
 
     Input = modify_Input(Input)
-    print(Sum_calibration(Input))
+    print("Part 2: ",Sum_calibration(Input))
 
-# def main():
-#     line = "one7one"
-#     line = Add_nums(line)
-#     print(line)
 if __name__ == "__main__":
     main()

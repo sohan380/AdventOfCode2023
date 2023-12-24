@@ -2,6 +2,7 @@ import re
 
 def power_set(game):
     r = g = b = 0
+    # Finding highest count required for each color
     for i in range(1, len(game)):
         if game[i] == 'red' and int(game[i-1])>r:
             r = int(game[i-1])    
@@ -18,14 +19,9 @@ def sum_power(Games):
     return sum
 
 def main():
-    Games = []
-    while True:
-        ele = input()[8:]
-        if ele == '':
-            break
-        else:
-            ele = re.sub('[^A-Za-z0-9 ]+', '', ele).split()
-            Games.append(ele)
+    # read input
+    Games = open('day_2\day2_Input.txt').read().split('\n')
+    Games = [re.sub('[^A-Za-z0-9 ]+', '', line[8:]).split() for line in Games]
             
     print(sum_power(Games))
 
